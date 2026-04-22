@@ -54,15 +54,23 @@ function ProductDetailPage() {
     <section className="card product-detail-card p-4 p-lg-5">
       <div className="row g-4 align-items-start">
         <div className="col-12 col-lg-6">
-          <div
-            className="product-detail-image product-color-block"
-            style={{ "--product-color": getProductColor(product) }}
-            aria-label={product.title || "Product"}
-          >
-            <span className="product-color-label">
-              {getProductVisualLabel(product)}
-            </span>
-          </div>
+          {product.image ? (
+            <img
+              className="product-detail-image"
+              src={product.image}
+              alt={product.title || "Product"}
+            />
+          ) : (
+            <div
+              className="product-detail-image product-color-block"
+              style={{ "--product-color": getProductColor(product) }}
+              aria-label={product.title || "Product"}
+            >
+              <span className="product-color-label">
+                {getProductVisualLabel(product)}
+              </span>
+            </div>
+          )}
         </div>
         <div className="col-12 col-lg-6">
           <p className="text-uppercase text-muted small mb-2">

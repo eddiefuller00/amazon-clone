@@ -5,7 +5,7 @@
       "title": "Mechanical Keyboard",
       "description": "Compact 75% keyboard",
       "price": 89.99,
-      "image": "",
+      "image": "/images/realKeyboard.jpg",
       "category": "Electronics"
     },
     {
@@ -13,7 +13,7 @@
       "title": "Wireless Mouse",
       "description": "Ergonomic mouse",
       "price": 34.5,
-      "image": "",
+      "image": "/images/mouse.jpeg",
       "category": "Electronics"
     },
     {
@@ -21,7 +21,7 @@
       "title": "Bottle",
       "description": "24 oz stainless steel bottle",
       "price": 24,
-      "image": "",
+      "image": "/images/water-bottle.webp",
       "category": "Home"
     },
     {
@@ -29,7 +29,7 @@
       "title": "NDesk Lamp",
       "description": "LED desk lamp",
       "price": 42.75,
-      "image": "",
+      "image": "/images/lampo.jpg",
       "category": "Home"
     },
     {
@@ -37,7 +37,7 @@
       "title": "Running Shoes",
       "description": "running shoes",
       "price": 74.99,
-      "image": "",
+      "image": "/images/shoes.avif",
       "category": "Sports"
     },
     {
@@ -45,7 +45,7 @@
       "title": "Yoga Mat",
       "description": "Stretching, and pilates.",
       "price": 29.95,
-      "image": "",
+      "image": "/images/yoga.jpeg",
       "category": "Sports"
     },
     {
@@ -53,7 +53,7 @@
       "title": "Headphones",
       "description": "Wireless headphones",
       "price": 129,
-      "image": "",
+      "image": "/images/headphones.jpeg",
       "category": "Electronics"
     },
     {
@@ -77,7 +77,7 @@
       "title": "Knife",
       "description": "cuts stuff",
       "price": 39.8,
-      "image": "",
+      "image": "/images/knife.jpeg",
       "category": "Kitchen"
     },
     {
@@ -93,7 +93,7 @@
       "title": "Backpack",
       "description": "holds stuff",
       "price": 48.6,
-      "image": "",
+      "image": "/images/backpack.jpeg",
       "category": "Fashion"
     },
     {
@@ -101,7 +101,7 @@
       "title": "iphone",
       "description": "call people, play angry birds",
       "price": 1499.99,
-      "image": "",
+      "image": "/images/iphone.webp",
       "category": "Electronics"
     },
     {
@@ -113,18 +113,5 @@
       "category": "Fashion"
     }
   ],
-  "cartItems": [
-    {
-      "productId": 13,
-      "quantity": 73
-    },
-    {
-      "productId": 1,
-      "quantity": 1
-    },
-    {
-      "productId": 2,
-      "quantity": 1
-    }
-  ]
+  "cartItems": []
 }

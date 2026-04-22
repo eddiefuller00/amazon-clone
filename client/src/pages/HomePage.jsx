@@ -62,10 +62,6 @@ function HomePage() {
   return (
     <section>
       <h1 className="page-title">Product Catalog</h1>
-      <p className="section-subtitle">
-        Router and shared state are set up. Product cards will become dynamic when
-        API endpoints are completed.
-      </p>
 
       {error ? (
         <div className="alert alert-warning mt-3 mb-0" role="alert">
@@ -114,15 +110,23 @@ function HomePage() {
             <div className="col-12 col-md-6 col-lg-4" key={product.id}>
               <article className="card product-card">
                 <Link className="product-image-wrap" to={`/products/${product.id}`}>
-                  <div
-                    className="product-color-block"
-                    style={{ "--product-color": getProductColor(product) }}
-                    aria-label={product.title || "Product"}
-                  >
-                    <span className="product-color-label">
-                      {getProductVisualLabel(product)}
-                    </span>
-                  </div>
+                  {product.image ? (
+                    <img
+                      className="product-image"
+                      src={product.image}
+                      alt={product.title || "Product"}
+                    />
+                  ) : (
+                    <div
+                      className="product-color-block"
+                      style={{ "--product-color": getProductColor(product) }}
+                      aria-label={product.title || "Product"}
+                    >
+                      <span className="product-color-label">
+                        {getProductVisualLabel(product)}
+                      </span>
+                    </div>
+                  )}
                 </Link>
                 <div className="card-body">
                   <Link className="product-title-link" to={`/products/${product.id}`}>
