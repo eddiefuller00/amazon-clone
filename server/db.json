@@ -113,5 +113,10 @@
       "category": "Fashion"
     }
   ],
-  "cartItems": []
+  "cartItems": [
+    {
+      "productId": 2,
+      "quantity": 1
+    }
+  ]
 }

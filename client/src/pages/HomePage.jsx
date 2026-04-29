@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useShop } from "../context/ShopContext.jsx";
 import { getProductColor, getProductVisualLabel } from "../utils/productVisuals.js";
 
@@ -12,7 +12,6 @@ const normalizeCategory = (categoryValue) => {
 };
 
 function HomePage() {
-  const navigate = useNavigate();
   const { products, isLoadingProducts, error, clearError, addItemToCart } = useShop();
   const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORIES_KEY);
 
@@ -52,12 +51,11 @@ function HomePage() {
   }, [products, selectedCategory]);
 
   const handleAddToCart = async (productId) => {
-    const result = await addItemToCart(productId);
-    if (result.ok) {
-      clearError();
-      navigate("/cart");
-    }
-  };
+  const result = await addItemToCart(productId);
+  if (result.ok) {
+    clearError();
+  }
+};
 
   return (
     <section>
