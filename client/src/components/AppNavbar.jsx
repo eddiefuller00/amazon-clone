@@ -28,7 +28,7 @@ function AppNavbar() {
     <nav className="navbar app-navbar py-3">
       <div className="container">
         <Link className="navbar-brand fw-semibold me-4" to="/">
-          CSC353 Store
+          Eddie's Store
         </Link>
         <div className="d-flex flex-wrap align-items-center gap-3 w-100">
           <ul className="navbar-nav flex-row gap-2 me-auto">

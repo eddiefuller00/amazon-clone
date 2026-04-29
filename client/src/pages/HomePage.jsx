@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useShop } from "../context/ShopContext.jsx";
 import { getProductColor, getProductVisualLabel } from "../utils/productVisuals.js";
 
@@ -12,7 +12,6 @@ const normalizeCategory = (categoryValue) => {
 };
 
 function HomePage() {
-  const navigate = useNavigate();
   const { products, isLoadingProducts, error, clearError, addItemToCart } = useShop();
   const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORIES_KEY);
 
@@ -52,20 +51,15 @@ function HomePage() {
   }, [products, selectedCategory]);
 
   const handleAddToCart = async (productId) => {
-    const result = await addItemToCart(productId);
-    if (result.ok) {
-      clearError();
-      navigate("/cart");
-    }
-  };
+  const result = await addItemToCart(productId);
+  if (result.ok) {
+    clearError();
+  }
+};
 
   return (
     <section>
       <h1 className="page-title">Product Catalog</h1>
-      <p className="section-subtitle">
-        Router and shared state are set up. Product cards will become dynamic when
-        API endpoints are completed.
-      </p>
 
       {error ? (
         <div className="alert alert-warning mt-3 mb-0" role="alert">
@@ -114,15 +108,23 @@ function HomePage() {
             <div className="col-12 col-md-6 col-lg-4" key={product.id}>
               <article className="card product-card">
                 <Link className="product-image-wrap" to={`/products/${product.id}`}>
-                  <div
-                    className="product-color-block"
-                    style={{ "--product-color": getProductColor(product) }}
-                    aria-label={product.title || "Product"}
-                  >
-                    <span className="product-color-label">
-                      {getProductVisualLabel(product)}
-                    </span>
-                  </div>
+                  {product.image ? (
+                    <img
+                      className="product-image"
+                      src={product.image}
+                      alt={product.title || "Product"}
+                    />
+                  ) : (
+                    <div
+                      className="product-color-block"
+                      style={{ "--product-color": getProductColor(product) }}
+                      aria-label={product.title || "Product"}
+                    >
+                      <span className="product-color-label">
+                        {getProductVisualLabel(product)}
+                      </span>
+                    </div>
+                  )}
                 </Link>
                 <div className="card-body">
                   <Link className="product-title-link" to={`/products/${product.id}`}>
