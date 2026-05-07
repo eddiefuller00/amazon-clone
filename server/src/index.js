@@ -246,6 +246,20 @@ app.delete("/api/cart/items/:productId", async (req, res, next) => {
   }
 });
 
+app.delete("/api/cart", async (_req, res, next) => {
+  try {
+    const db = await readDb();
+    const nextDb = {
+      ...db,
+      cartItems: [],
+    };
+    await writeDb(nextDb);
+    res.json(buildCartResponse(nextDb));
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.use((error, _req, res, _next) => {
   console.error(error);
   res.status(500).json({ error: "Internal server error" });

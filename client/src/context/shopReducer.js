@@ -1,5 +1,6 @@
 export const ACTIONS = {
   SET_SEARCH_TERM: "SET_SEARCH_TERM",
+  SET_APPLIED_SEARCH_TERM: "SET_APPLIED_SEARCH_TERM",
   SET_PRODUCTS_LOADING: "SET_PRODUCTS_LOADING",
   SET_PRODUCTS: "SET_PRODUCTS",
   SET_CART_LOADING: "SET_CART_LOADING",
@@ -26,6 +27,7 @@ export const initialShopState = {
   products: [],
   cart: EMPTY_CART,
   searchTerm: "",
+  appliedSearchTerm: "",
   isLoadingProducts: false,
   isLoadingCart: false,
   error: "",
@@ -37,6 +39,11 @@ export const shopReducer = (state, action) => {
       return {
         ...state,
         searchTerm: action.payload,
+      };
+    case ACTIONS.SET_APPLIED_SEARCH_TERM:
+      return {
+        ...state,
+        appliedSearchTerm: action.payload,
       };
     case ACTIONS.SET_PRODUCTS_LOADING:
       return {
