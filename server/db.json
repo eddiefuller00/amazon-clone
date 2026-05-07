@@ -61,7 +61,7 @@
       "title": "Smart Watch",
       "description": "Fitness tracking watch",
       "price": 149.99,
-      "image": "",
+      "image": "/images/smart-watch.png",
       "category": "Electronics"
     },
     {
@@ -69,7 +69,7 @@
       "title": "Coffee Grinder",
       "description": "grinds coffee",
       "price": 56.2,
-      "image": "",
+      "image": "/images/coffee-grinder.jpeg",
       "category": "Kitchen"
     },
     {
@@ -85,7 +85,7 @@
       "title": "Blanket",
       "description": "warm blanket",
       "price": 27.4,
-      "image": "",
+      "image": "/images/blanket.jpeg",
       "category": "Home"
     },
     {
@@ -109,13 +109,145 @@
       "title": "snow gloves",
       "description": "keep hands warm",
       "price": 44.99,
-      "image": "",
+      "image": "/images/snow-gloves.jpg",
+      "category": "Fashion"
+    },
+    {
+      "id": 15,
+      "title": "Pots and Pans Set",
+      "description": "Pots and Pans for cooking and stuff",
+      "price": 119.99,
+      "image": "/images/pots-and-pans.jpg",
+      "category": "Kitchen"
+    },
+    {
+      "id": 16,
+      "title": "Dress Boots",
+      "description": "Nice boots",
+      "price": 94.99,
+      "image": "/images/dress-boots.jpg",
+      "category": "Fashion"
+    },
+    {
+      "id": 17,
+      "title": "Portable Charger",
+      "description": "Charging when you cant find an outlet",
+      "price": 32.99,
+      "image": "/images/portable-charger.jpg",
+      "category": "Electronics"
+    },
+    {
+      "id": 18,
+      "title": "Basketball",
+      "description": "Shoot some hoops or something",
+      "price": 26.99,
+      "image": "/images/basketball.webp",
+      "category": "Sports"
+    },
+    {
+      "id": 19,
+      "title": "Bluetooth Speaker",
+      "description": "Listen to some tunes",
+      "price": 59.99,
+      "image": "/images/speaker.jpeg",
+      "category": "Electronics"
+    },
+    {
+      "id": 20,
+      "title": "USB-C Hub",
+      "description": "Plug stuff in",
+      "price": 44.99,
+      "image": "/images/hub.jpg",
+      "category": "Electronics"
+    },
+    {
+      "id": 21,
+      "title": "Air Purifier",
+      "description": "Clean your air and stuff",
+      "price": 89.99,
+      "image": "/images/air-purifier.webp",
+      "category": "Home"
+    },
+    {
+      "id": 22,
+      "title": "Throw Pillow Set",
+      "description": "Rest your head",
+      "price": 34.99,
+      "image": "/images/pillows.webp",
+      "category": "Home"
+    },
+    {
+      "id": 23,
+      "title": "Resistance Bands Set",
+      "description": "Get big",
+      "price": 21.99,
+      "image": "/images/bands.webp",
+      "category": "Sports"
+    },
+    {
+      "id": 24,
+      "title": "Foam Roller",
+      "description": "Stretch and stuff",
+      "price": 27.99,
+      "image": "/images/roller.jpg",
+      "category": "Sports"
+    },
+    {
+      "id": 25,
+      "title": "Toaster",
+      "description": "Make some toast",
+      "price": 39.99,
+      "image": "/images/toast.jpeg",
+      "category": "Kitchen"
+    },
+    {
+      "id": 26,
+      "title": "Cast Iron Skillet",
+      "description": "Cook some food",
+      "price": 32.49,
+      "image": "/images/pan.jpg",
+      "category": "Kitchen"
+    },
+    {
+      "id": 27,
+      "title": "Classic Sunglasses",
+      "description": "Block that sun",
+      "price": 24.99,
+      "image": "/images/glasses.webp",
+      "category": "Fashion"
+    },
+    {
+      "id": 28,
+      "title": "Denim Jacket",
+      "description": "Nice Jacket",
+      "price": 64.99,
+      "image": "/images/denim-jacket.webp",
       "category": "Fashion"
     }
   ],
   "cartItems": [
     {
-      "productId": 2,
+      "productId": 7,
+      "quantity": 1
+    },
+    {
+      "productId": 8,
+      "quantity": 1
+    },
+    {
+      "productId": 11,
+      "quantity": 1
+    },
+    {
+      "productId": 4,
+      "quantity": 1
+    },
+    {
+      "productId": 6,
+      "quantity": 1
+    },
+    {
+      "productId": 23,
       "quantity": 1
     }
   ]

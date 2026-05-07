@@ -1,14 +1,24 @@
+import { useMemo } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useShop } from "../context/ShopContext.jsx";
 
-const navLinkClass = ({ isActive }) => `nav-link${isActive ? " active" : ""}`;
+const navLinkClass = ({ isActive }) =>
+  `amazon-subnav-link${isActive ? " active" : ""}`;
+
+const normalizeCategory = (categoryValue) => {
+  const categoryLabel = String(categoryValue || "").trim();
+  return categoryLabel || "Uncategorized";
+};
 
 function AppNavbar() {
   const navigate = useNavigate();
   const {
     cart,
     isLoadingProducts,
+    loadProducts,
+    products,
     searchTerm,
+    setAppliedSearchTerm,
     setSearchTerm,
     searchProducts,
   } = useShop();
@@ -18,51 +28,98 @@ function AppNavbar() {
     0,
   );
 
+  const categoryOptions = useMemo(() => {
+    const categoryMap = new Map();
+
+    products.forEach((product) => {
+      const categoryLabel = normalizeCategory(product.category);
+      const categoryKey = categoryLabel.toLowerCase();
+
+      if (!categoryMap.has(categoryKey)) {
+        categoryMap.set(categoryKey, categoryLabel);
+      }
+    });
+
+    return [...categoryMap.values()].sort((left, right) => left.localeCompare(right));
+  }, [products]);
+
   const handleSearchSubmit = async (event) => {
     event.preventDefault();
     await searchProducts(searchTerm);
     navigate("/");
   };
 
+  const handleCategoryShortcut = async (category) => {
+    setSearchTerm("");
+    setAppliedSearchTerm("");
+    await loadProducts();
+    navigate(category === "All" ? "/" : `/?category=${encodeURIComponent(category)}`);
+  };
+
   return (
-    <nav className="navbar app-navbar py-3">
-      <div className="container">
-        <Link className="navbar-brand fw-semibold me-4" to="/">
-          Eddie's Store
+    <header className="amazon-header">
+      <div className="page-width amazon-header-top">
+        <Link className="amazon-brand" to="/">
+          <span className="amazon-brand-wordmark">eddiezon</span>
+          <span className="amazon-brand-submark">prime</span>
         </Link>
-        <div className="d-flex flex-wrap align-items-center gap-3 w-100">
-          <ul className="navbar-nav flex-row gap-2 me-auto">
-            <li className="nav-item">
-              <NavLink className={navLinkClass} to="/" end>
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className={navLinkClass} to="/cart">
-                Cart ({cartCount})
-              </NavLink>
-            </li>
-          </ul>
-          <form className="d-flex gap-2 flex-grow-1 justify-content-end" onSubmit={handleSearchSubmit}>
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Search products"
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-              aria-label="Search products"
-            />
+
+        <form className="amazon-search" onSubmit={handleSearchSubmit}>
+          <span className="amazon-search-scope">All</span>
+          <input
+            className="amazon-search-input"
+            type="search"
+            placeholder="Search Eddiezon"
+            value={searchTerm}
+            onChange={(event) => setSearchTerm(event.target.value)}
+            aria-label="Search products"
+          />
+          <button
+            className="amazon-search-button"
+            type="submit"
+            disabled={isLoadingProducts}
+          >
+            Search
+          </button>
+        </form>
+
+        <Link className="amazon-cart-link" to="/cart">
+          <span className="amazon-cart-count">{cartCount}</span>
+          <span className="amazon-cart-text">Cart</span>
+        </Link>
+      </div>
+
+      <div className="amazon-subnav">
+        <div className="page-width amazon-subnav-inner">
+          <button
+            type="button"
+            className="amazon-menu-button"
+            onClick={() => handleCategoryShortcut("All")}
+          >
+            All
+          </button>
+
+          <NavLink className={navLinkClass} to="/" end>
+            Home
+          </NavLink>
+
+          {categoryOptions.map((category) => (
             <button
-              className="btn btn-outline-light"
-              type="submit"
-              disabled={isLoadingProducts}
+              key={category}
+              type="button"
+              className="amazon-subnav-button"
+              onClick={() => handleCategoryShortcut(category)}
             >
-              Search
+              {category}
             </button>
-          </form>
+          ))}
+
+          <NavLink className={navLinkClass} to="/cart">
+            Cart
+          </NavLink>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
 

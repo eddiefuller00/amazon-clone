@@ -8,6 +8,7 @@ import {
 } from "react";
 import {
   addCartItem,
+  clearCart,
   fetchCart,
   fetchProducts,
   removeCartItem,
@@ -25,6 +26,13 @@ export const ShopProvider = ({ children }) => {
 
   const setSearchTerm = useCallback((nextSearchTerm) => {
     dispatch({ type: ACTIONS.SET_SEARCH_TERM, payload: nextSearchTerm });
+  }, []);
+
+  const setAppliedSearchTerm = useCallback((nextSearchTerm) => {
+    dispatch({
+      type: ACTIONS.SET_APPLIED_SEARCH_TERM,
+      payload: String(nextSearchTerm || "").trim(),
+    });
   }, []);
 
   const clearError = useCallback(() => {
@@ -62,9 +70,10 @@ export const ShopProvider = ({ children }) => {
   const searchProducts = useCallback(
     async (nextSearchTerm) => {
       dispatch({ type: ACTIONS.SET_SEARCH_TERM, payload: nextSearchTerm });
+      setAppliedSearchTerm(nextSearchTerm);
       await loadProducts(nextSearchTerm);
     },
-    [loadProducts],
+    [loadProducts, setAppliedSearchTerm],
   );
 
   const addItemToCart = useCallback(async (productId, quantity = 1) => {
@@ -115,6 +124,22 @@ export const ShopProvider = ({ children }) => {
     }
   }, []);
 
+  const clearCartItems = useCallback(async () => {
+    dispatch({ type: ACTIONS.SET_CART_LOADING, payload: true });
+    try {
+      const cart = await clearCart();
+      dispatch({ type: ACTIONS.SET_CART, payload: normalizeCart(cart) });
+      return { ok: true };
+    } catch (error) {
+      dispatch({ type: ACTIONS.SET_CART_LOADING, payload: false });
+      dispatch({
+        type: ACTIONS.SET_ERROR,
+        payload: parseError(error, "Unable to clear cart."),
+      });
+      return { ok: false };
+    }
+  }, []);
+
   useEffect(() => {
     void loadProducts();
     void loadCart();
@@ -124,6 +149,7 @@ export const ShopProvider = ({ children }) => {
     () => ({
       ...state,
       setSearchTerm,
+      setAppliedSearchTerm,
       clearError,
       searchProducts,
       loadProducts,
@@ -131,10 +157,12 @@ export const ShopProvider = ({ children }) => {
       addItemToCart,
       updateItemQuantity,
       removeItemFromCart,
+      clearCartItems,
     }),
     [
       state,
       setSearchTerm,
+      setAppliedSearchTerm,
       clearError,
       searchProducts,
       loadProducts,
@@ -142,6 +170,7 @@ export const ShopProvider = ({ children }) => {
       addItemToCart,
       updateItemQuantity,
       removeItemFromCart,
+      clearCartItems,
     ],
   );
 
